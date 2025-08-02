@@ -15,7 +15,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String input;
         boolean loop = true;
-        Gson gson = new Gson();
 
         System.out.println("Welcome to the Pokedex!");
         while (loop) {
@@ -24,37 +23,27 @@ public class Main {
             input = scanner.nextLine();
             if (input.equals("Exit") || input.equals("0")) {
                 loop = false;
-                System.out.println("Goodbye!");
-            } else {
+                System.out.println("Thank you for using the Pokedex!!");
+            } else if (Integer.parseInt(input) < 0) {
+                System.out.println("Please enter a positive integer!");
+            }
+            else {
                 try {
-                    //String jsonInString = pokeAPI.findPokemon(input);
-                    //JsonObject object = JsonParser.parseString(input).getAsJsonObject();
-                    //Pokemon pokemon = new Pokemon();
-
-                    //pokemon.setName(object.get("name").getAsString());
-
-                    //System.out.println(pokemon.toString());
-                    //System.out.println(jsonInString);
-
-                    //Pokemon pokemon = gson.fromJson(jsonInString, Pokemon.class);
-                    //System.out.println(pokemon.toString());
 
                     String json = pokeAPI.findPokemon(input);
-                    System.out.println(json);
+                    //System.out.println(json);
+                    Gson gson = new Gson();
+                    Pokemon pokemon = gson.fromJson(json, Pokemon.class);
 
-                    //Pokemon pokemon = gson.fromJson(json, Pokemon.class);
+                    System.out.println(pokemon);
 
-                } catch (Exception e) {
-                    System.out.println("um");
-                    throw new RuntimeException(e);
+
                 }
-
-
+                catch (Exception e) {
+                    System.out.println("An error has occurred!");
+                    //throw new RuntimeException(e);
+                }
             }
-
         }
-
-
-
     }
 }

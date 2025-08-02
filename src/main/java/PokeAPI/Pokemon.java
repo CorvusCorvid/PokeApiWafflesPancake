@@ -7,11 +7,10 @@ import java.io.IOException;
 public class Pokemon {
 
     // fields
-     private String name;
-     private int height;
-     private int weight;
-
-    Gson gson = new Gson();
+    private int id;
+    private String name;
+    private int height;
+    private int weight;
 
     // get/set
     public String getName() {
@@ -33,16 +32,17 @@ public class Pokemon {
         this.weight = weight;
     }
 
-    public Pokemon(String name, int height, int weight) {
+    public Pokemon(String name, int height, int weight, int id) {
         this.name = name;
         this.height = height;
         this.weight = weight;
+        this.id = id;
 
     }
 
     @Override
     public String toString() {
-        return ("Pokemon Name: " + name + "\nHeight: " + height + "\nWeight: " + weight + "\n");
+        return ("ID: " + id + "\nPokemon Name: " + name + "\nHeight: " + height + "\nWeight: " + weight + "\n");
     }
 
 
